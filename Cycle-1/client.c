@@ -40,10 +40,13 @@ void main(){
                 gets(sendline);
                 write(sock_id,sendline,sizeof(sendline));
                 
-                printf("The message from server");
+                printf("The message from server : ");
                 read(sock_id,recline,100);
                 puts(recline);
-                bzero( sendline, 100);
+                //bzero( sendline, 100);
+                
+                if (strcmp (recline, "quit") == 0 || strcmp (sendline, "quit") == 0 )
+                exit(0);
         }
         close(sock_id);
 }

@@ -54,11 +54,14 @@ void main(){
                 printf("The message from client : ");
                 read(newSocket,recline,100);
                 puts(recline);
-                bzero( sendline, 100);
-                printf("The message from server");
+                //bzero( sendline, 100);
+                
+                printf("The message from server :");
                 gets(sendline);
                 write(newSocket,sendline,sizeof(sendline));
                 
+                if (strcmp (recline, "quit") == 0|| strcmp (sendline, "quit") == 0)
+                exit(0);
          
         }
         close(sock_id);

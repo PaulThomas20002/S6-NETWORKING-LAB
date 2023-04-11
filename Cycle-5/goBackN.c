@@ -2,22 +2,16 @@
 #include<stdlib.h>
 #include<unistd.h>
 
-#define W 4 // window size
-#define N 10 // number of frames
-
-void delay(int sec) {
-    int ms = 1000000 * sec;
-    usleep(ms);
-}
-
 int main() {
-    int frames[N], sent_ack = -1, received_ack = -1;
-    int window_start = 0, window_end = W - 1;
+    int frames[25], sent_ack = -1, received_ack = -1;
+    int window_start = 0, window_end;
+    int N, W ;
     
-    printf("\n\nImplementing Go-Back-N ARQ Protocol\n\n");
-    printf("Number of frames to be transmitted: %d\n", N);
-    printf("Window size: %d\n", W);
-    
+    printf("Number of frames to be transmitted : ");
+    scanf("%d", &N);
+    printf("Window size : ");
+    scanf("%d", &W);
+    window_end = W - 1;
     // initialize frames to be transmitted
     for(int i = 0; i < N; i++) {
         frames[i] = i;
@@ -29,7 +23,7 @@ int main() {
         for(int i = window_start; i <= window_end; i++) {
             if(sent_ack < i) {
                 printf("\nSending frame %d", frames[i]);
-                delay(1);
+                sleep(2);
                 printf("\nFrame %d has been sent", frames[i]);
             }
         }

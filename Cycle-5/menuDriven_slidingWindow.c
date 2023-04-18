@@ -12,8 +12,11 @@ struct frame{
 
 void selective(){
 	for(int i=1;i<=n;i++){
-		printf("Enter the value of frame %d : ",i);
-		scanf("%d",&frm[i].data);
+		//printf("Enter the value of frame %d : ",i);
+		//scanf("%d",&frm[i].data);
+        	for(int i = 1; i <= n; i++) {
+            		frm[i].data = i;
+        	}
 		frm[i].ack='y';
 		//rand();	
 		r=3;
@@ -67,7 +70,7 @@ void selective(){
             }
 			else{
 				frm[i].ack='y';
-				printf("Packet Lost %d\n",frm[i].data);
+				printf("Packet Resending .. %d\n",frm[i].data);
 			}
 			if (i==lc+(w_size-1)){
 				printf("Packet received with data : %d\n",frm[r].data);
@@ -133,8 +136,9 @@ void stopnwait(){
     printf("\nNo. of packets to be sent:");
     scanf("%d", & n);
     for (i = 1; i <= n; i++) {
-        printf("\nData for packets[%d] : ", i);
-        scanf("%d", &frame[i].data);
+        frame[i].data = i;
+        printf("\nData for packets[%d] : %d \n", i, i);
+        //scanf("%d", &frame[i].data);
         frame[i].ack = 'y';
         printf("Packet Sent\n Waiting for acknowledgement\n");
 	    printf("\n");
@@ -149,7 +153,7 @@ void stopnwait(){
     sleep(1);
 
     if (frame[i].ack == 'y'){
-    printf("\nReceived data of packet %d is %d", i, frame[i].data);
+    printf("\nACK Recv \nReceived data of packet %d is %d", i, frame[i].data);
     }
     else {
         

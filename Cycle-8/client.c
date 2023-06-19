@@ -28,7 +28,7 @@ void main(){
 	connect(sock_fd,(struct sockaddr*)&serv_addr,sizeof(serv_addr));
 
 	while(1){
-		printf("\nEnter the source file name : \n");
+		printf("\nEnter the source file name : ");
 	    scanf("%s",send);
 	    
 	    write(sock_fd,send,MAX);
@@ -37,7 +37,7 @@ void main(){
 	   	}
 	    read(sock_fd,recvline,MAX);
 	    
-	    printf("%s",recvline);
+	    printf("\n%s\n",recvline);
 	    
 			
 	}

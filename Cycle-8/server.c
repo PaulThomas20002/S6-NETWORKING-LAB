@@ -44,14 +44,19 @@ void main(){
 		}
 		printf("\nClient msg\n\nFile Name: %s\n",str);
 		f1=fopen(str,"r");
-		if(f1!=NULL){
+		if(f1==NULL){
+			char err[100]="ERROR OCCURED! NO FILE FOUND";
+			printf("\n%s\n",err);
+			write(newSock_fd,err,60);
+			continue;
+		}
+		else{
+			
 			while(fgets(buff,4096,f1)!=NULL){
 				write(newSock_fd,buff,60);
 				printf("\n");
 			}
 			fclose(f1);
-		}else{
-			write(newSock_fd,"Error occured / no file exists",60);	
 		}
 	}while(strcmp(str,"exit")!=0);	
 
